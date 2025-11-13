@@ -30,7 +30,7 @@ module('Integration | Component | map', function (hooks) {
       .hasAttribute('height', '120');
 
     let { src } = find('.map img');
-    let token = encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
+    let token = encodeURIComponent(ENV.APP.TOMTOM_ACCESS_TOKEN);
 
     assert.ok(
       src.startsWith('https://api.tomtom.com/'),

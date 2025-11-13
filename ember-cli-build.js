@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config({ path: '.env.local' });
+
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { compatBuild } = require('@embroider/compat');
 

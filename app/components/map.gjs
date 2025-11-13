@@ -15,7 +15,7 @@ export default class Map extends Component {
   }
 
   get token() {
-    return encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
+    return encodeURIComponent(ENV.APP.TOMTOM_ACCESS_TOKEN);
   }
 
   <template>

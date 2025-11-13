@@ -12,4 +12,7 @@ export default defineConfig({
       extensions,
     }),
   ],
+  define: {
+    'process.env.VITE_TOMTOM_ACCESS_TOKEN': JSON.stringify(process.env.VITE_TOMTOM_ACCESS_TOKEN),
+  },
 });
