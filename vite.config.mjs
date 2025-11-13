@@ -13,6 +13,8 @@ export default defineConfig({
     }),
   ],
   define: {
-    'process.env.VITE_TOMTOM_ACCESS_TOKEN': JSON.stringify(process.env.VITE_TOMTOM_ACCESS_TOKEN),
+    'process.env.VITE_TOMTOM_ACCESS_TOKEN': JSON.stringify(
+      process.env.VITE_TOMTOM_ACCESS_TOKEN,
+    ),
   },
 });

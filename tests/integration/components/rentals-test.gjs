@@ -14,7 +14,7 @@ module('Integration | Component | rentals', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-        state.rentals = [
+    state.rentals = [
       {
         id: 'grand-old-mansion',
         title: 'Grand Old Mansion',

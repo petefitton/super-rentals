@@ -25,7 +25,7 @@ export default class Rentals extends Component {
       <form {{on "input" this.updateQuery}} {{on "submit" this.handleSubmit}}>
         <label>
           <span>Where would you like to stay?</span>
-          <input name="rental-search-term" class="light">
+          <input name="rental-search-term" class="light" />
         </label>
         <p>The results below will update as you type.</p>
       </form>
