@@ -24,8 +24,9 @@ export default class Map extends Component {
         alt="Map image at coordinates {{@lat}},{{@lng}}"
         ...attributes
         src={{this.src}}
-        width={{@width}} height={{@height}}
-      >
+        width={{@width}}
+        height={{@height}}
+      />
     </div>
   </template>
 }

@@ -9,15 +9,17 @@ module('Integration | Component | map', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders a map image for the specified parameters', async function (assert) {
-    await render(<template>
-      <Map
-        @lat="37.7797"
-        @lng="-122.4184"
-        @zoom="10"
-        @width="150"
-        @height="120"
-      />
-    </template>);
+    await render(
+      <template>
+        <Map
+          @lat="37.7797"
+          @lng="-122.4184"
+          @zoom="10"
+          @width="150"
+          @height="120"
+        />
+      </template>
+    );
 
     assert
       .dom('.map img')
@@ -32,66 +34,68 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       src.startsWith('https://api.tomtom.com/'),
-      'the src starts with "https://api.tomtom.com/"',
+      'the src starts with "https://api.tomtom.com/"'
     );
 
     assert.ok(
       src.includes('zoom=10'),
-      'the src should include the zoom parameter',
+      'the src should include the zoom parameter'
     );
 
     assert.ok(
       src.includes('center=-122.4184,37.7797'),
-      'the src should include the lng,lat parameter',
+      'the src should include the lng,lat parameter'
     );
 
     assert.ok(
       src.includes(`key=${token}`),
-      'the src should include the escaped access token',
+      'the src should include the escaped access token'
     );
   });
 
   test('it updates the `src` attribute when the arguments change', async function (assert) {
-    class State { 
+    class State {
       @tracked lat = 37.7749;
       @tracked lng = -122.4194;
       @tracked zoom = 10;
       @tracked width = 150;
       @tracked height = 120;
-    };
+    }
 
     const state = new State();
 
-    await render(<template>
-      <Map
-        @lat={{state.lat}}
-        @lng={{state.lng}}
-        @zoom={{state.zoom}}
-        @width={{state.width}}
-        @height={{state.height}}
-      />
-    </template>);
+    await render(
+      <template>
+        <Map
+          @lat={{state.lat}}
+          @lng={{state.lng}}
+          @zoom={{state.zoom}}
+          @width={{state.width}}
+          @height={{state.height}}
+        />
+      </template>
+    );
 
     let img = find('.map img');
 
     assert.ok(
       img.src.includes('zoom=10'),
-      'the src should include the zoom parameter',
+      'the src should include the zoom parameter'
     );
 
     assert.ok(
       img.src.includes('-122.4194,37.7749'),
-      'the src should include the lng,lat parameter',
+      'the src should include the lng,lat parameter'
     );
 
     assert.ok(
       img.src.includes('width=150'),
-      'the src should include the width parameter',
+      'the src should include the width parameter'
     );
 
     assert.ok(
       img.src.includes('height=120'),
-      'the src should include the height parameter',
+      'the src should include the height parameter'
     );
 
     state.width = 300;
@@ -102,22 +106,22 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       img.src.includes('-122.4194,37.7749'),
-      'the src should still include the lng,lat parameter',
+      'the src should still include the lng,lat parameter'
     );
 
     assert.ok(
       img.src.includes('width=300'),
-      'the src should include the updated width parameter',
+      'the src should include the updated width parameter'
     );
 
     assert.ok(
       img.src.includes('height=200'),
-      'the src should include the updated height parameter',
+      'the src should include the updated height parameter'
     );
 
     assert.ok(
       img.src.includes('zoom=12'),
-      'the src should include the updated zoom parameter',
+      'the src should include the updated zoom parameter'
     );
 
     state.lat = 47.6062;
@@ -127,38 +131,42 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       img.src.includes('center=-122.3321,47.6062'),
-      'the src should include the updated lng,lat parameter',
+      'the src should include the updated lng,lat parameter'
     );
   });
 
   test('the default alt attribute can be overridden', async function (assert) {
-    await render(<template>
-      <Map
-        @lat="37.7797"
-        @lng="-122.4184"
-        @zoom="10"
-        @width="150"
-        @height="120"
-        alt="A map of San Francisco"
-      />
-    </template>);
+    await render(
+      <template>
+        <Map
+          @lat="37.7797"
+          @lng="-122.4184"
+          @zoom="10"
+          @width="150"
+          @height="120"
+          alt="A map of San Francisco"
+        />
+      </template>
+    );
 
     assert.dom('.map img').hasAttribute('alt', 'A map of San Francisco');
   });
 
   test('the src, width and height attributes cannot be overridden', async function (assert) {
-    await render(<template>
-      <Map
-        @lat="37.7797"
-        @lng="-122.4184"
-        @zoom="10"
-        @width="150"
-        @height="120"
-        src="/assets/images/teaching-tomster.png"
-        width="200"
-        height="300"
-      />
-    </template>);
+    await render(
+      <template>
+        <Map
+          @lat="37.7797"
+          @lng="-122.4184"
+          @zoom="10"
+          @width="150"
+          @height="120"
+          src="/assets/images/teaching-tomster.png"
+          width="200"
+          height="300"
+        />
+      </template>
+    );
 
     assert
       .dom('.map img')
